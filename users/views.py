@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from common.enums import Message
 from .models import User, UserTemplate
 from django.utils import timezone
-from .serializer import UserSignupSerializer, UserLoginSerializer
+from .serializer import UserSignupSerializer, UserLoginSerializer, UserProfileSerializer
 from common.baselayer.baseAuth import UserAuthentication
 
 
@@ -70,4 +70,28 @@ class TemplateView(ModelViewSet):
             )
 
         except Exception as e:
-            pass
+            return Response(create_response(True, Message.server_error.value, []))
+
+
+class ProfileView(ModelViewSet):
+    authentication_classes = [UserAuthentication]
+    permission_classes = []
+    model = User
+    serializer_class = UserProfileSerializer
+
+    def get_profile(self, request):
+        try:
+            return Response(create_response(False, Message.success.value, self.serializer_class(request.user,
+                                                                                               many=True).data))
+        except Exception as e:
+            return Response(create_response(True, Message.server_error.value, []))
+
+    def update_profile(self, request):
+        try:
+            serializer = self.serializer_class(request.user, data = request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(create_response(False, Message.success.value, serializer.data))
+            return Response(create_response(True, Message.try_with_correct_data.value, []))
+        except Exception as e:
+            return Response(create_response(True, Message.server_error.value, []))

@@ -15,7 +15,15 @@ Including another URLconf
 """
 
 from django.urls import path
-
+from . import views
 urlpatterns = [
-
+    path('signup/', views.UserAuthView.as_view({
+        "post": "signup"
+    })),
+    path('login/', views.UserAuthView.as_view({
+        "post": "login"
+    })),
+    path('select-template/', views.UserAuthView.as_view({
+        "post": "select_template"
+    }))
 ]

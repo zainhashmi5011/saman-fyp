@@ -26,7 +26,6 @@ class UserAuthView(ModelViewSet):
                     data.pop('password')
                     data['token'] = encode_token(user[0])
                     data['name'] = user[0].first_name
-                    data['template_type'] = user[0].user_template.last().template_type
                     user[0].last_login = timezone.now()
                     user[0].login_token = data['token']
                     user[0].save()

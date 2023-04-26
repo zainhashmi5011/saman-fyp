@@ -5,7 +5,6 @@ def encode_token (object):
     payload = {
         'id':object.id,
         'email':object.email,
-        'user_type':object.user_type,
     }
     secret_key = "cancerclarity"
 

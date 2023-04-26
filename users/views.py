@@ -55,7 +55,7 @@ class UserAuthView(ModelViewSet):
 
 
 class TemplateView(ModelViewSet):
-    authentication_classes = [UserAuthentication]
+    authentication_classes = []
     permission_classes = []
     model = UserTemplate
 
@@ -64,10 +64,10 @@ class TemplateView(ModelViewSet):
             if not request.data.get("template_type"):
                 return Response(create_response(True, Message.try_with_correct_data.value, []))
             self.model.objects.create(
-                user = request.user,
+                user_id = request.data.get("user_id"),
                 template_type = request.data.get("template_type")
             )
-
+            return Response(create_response(False, Message.success.value, []))
         except Exception as e:
             return Response(create_response(True, Message.server_error.value, []))
 

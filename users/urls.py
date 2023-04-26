@@ -23,7 +23,7 @@ urlpatterns = [
     path('login/', views.UserAuthView.as_view({
         "post": "login"
     })),
-    path('select-template/', views.UserAuthView.as_view({
+    path('select-template/', views.TemplateView.as_view({
         "post": "select_template"
     }))
 ]

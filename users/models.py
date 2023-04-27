@@ -50,11 +50,6 @@ class Education(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, )
 
 
-class Education(models.Model):
-    title = models.CharField(max_length=2000, null=True, blank=True)
-    description = models.CharField(max_length=2000, null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, )
-
 class AcademicExp(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
     description = models.CharField(max_length=2000, null=True, blank=True)
@@ -79,15 +74,8 @@ class Blogs(models.Model):
 
 class Pictures(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
-    description = models.CharField(max_length=2000, null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,)
-
-
-class Awards(models.Model):
-    title = models.CharField(max_length=2000, null=True, blank=True)
-    description = models.CharField(max_length=2000, null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, )
-
 
 class Jobs(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)

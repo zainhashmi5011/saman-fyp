@@ -111,7 +111,7 @@ class CollaborationSerializer (ModelSerializer):
 
     class Meta :
         model = Collaborations
-        fields = ['id', 'user', 'title', 'image']
+        fields = ['id', 'user', 'title', 'image', 'role']
 
 
     def to_representation(self, instance):
@@ -124,6 +124,7 @@ class CollaborationSerializer (ModelSerializer):
             'id' : instance.id,
             'user': instance.user_id,
             'title' : instance.title,
-            'image' :  image_url
+            'image' :  image_url,
+            'role' : instance.role
         }
         return data

@@ -48,28 +48,38 @@ class Education(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
     description = models.CharField(max_length=2000, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, )
+    _from = models.CharField(max_length=2000, null=True, blank=True)
+    _to = models.CharField(max_length=2000, null=True, blank=True)
 
 
 class AcademicExp(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
     description = models.CharField(max_length=2000, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,)
+    _from = models.CharField(max_length=2000, null=True, blank=True)
+    _to = models.CharField(max_length=2000, null=True, blank=True)
 
 
 class Awards(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
     description = models.CharField(max_length=2000, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, )
+    _from = models.CharField(max_length=2000, null=True, blank=True)
+    _to = models.CharField(max_length=2000, null=True, blank=True)
 
 class Achievements(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
     description = models.CharField(max_length=2000, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,)
+    _from = models.CharField(max_length=2000, null=True, blank=True)
+    _to = models.CharField(max_length=2000, null=True, blank=True)
 
 class Blogs(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
     description = models.CharField(max_length=2000, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,)
+    _from = models.CharField(max_length=2000, null=True, blank=True)
+    _to = models.CharField(max_length=2000, null=True, blank=True)
 
 
 class Pictures(models.Model):
@@ -81,15 +91,21 @@ class Jobs(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
     description = models.CharField(max_length=2000, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, )
+    _from = models.CharField(max_length=2000, null=True, blank=True)
+    _to = models.CharField(max_length=2000, null=True, blank=True)
 
 
 class Collaborations(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,)
+    role = models.CharField(max_length=2000, null=True, blank=True)
+
 
 
 class Funding(models.Model):
     title = models.CharField(max_length=2000, null=True, blank=True)
     description = models.CharField(max_length=2000, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, )
+    _from = models.CharField(max_length=2000, null=True, blank=True)
+    _to = models.CharField(max_length=2000, null=True, blank=True)

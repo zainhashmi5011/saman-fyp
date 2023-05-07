@@ -90,8 +90,9 @@ class ProfileView(ModelViewSet):
 
     def get_profile(self, request):
         try:
-            return Response(create_response(False, Message.success.value, self.serializer_class(request.user,
-                                                                                               many=False).data))
+            serialized_data = self.serializer_class(request.user, many=False).data
+            serialized_data['template_type'] = request.user.user_template.all().last().template_type
+            return Response(create_response(False, Message.success.value, []))
         except Exception as e:
             return Response(create_response(True, Message.server_error.value, []))
 

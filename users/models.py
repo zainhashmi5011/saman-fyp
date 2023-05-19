@@ -20,6 +20,7 @@ class User(AbstractUser):
     biography = models.CharField(max_length=1000 , null=True , blank=True)
     lab_details = models.CharField(max_length=20000, null=True, blank=True)
     postal_address = models.CharField(max_length=2000, null=True, blank=True)
+    bg_color = models.CharField(max_length=2000, null=True, blank=True)
 
     REQUIRED_FIELDS = []
 

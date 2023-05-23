@@ -10,7 +10,7 @@ class TemplateChoices(TextChoices):
     TEMPLATE_2 = 2
 
 
-class User(AbstractUser):
+class  User(AbstractUser):
     email = models.EmailField(null=True,blank=True,unique=True)
     username = models.CharField(max_length=300,null=True , blank=True)
     password = models.CharField(max_length=1000 , null=True , blank=True)
@@ -21,6 +21,8 @@ class User(AbstractUser):
     lab_details = models.CharField(max_length=20000, null=True, blank=True)
     postal_address = models.CharField(max_length=2000, null=True, blank=True)
     bg_color = models.CharField(max_length=2000, null=True, blank=True, default="#FFFFFF")
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
+
 
     REQUIRED_FIELDS = []
 

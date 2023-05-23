@@ -27,7 +27,7 @@ class UserAuthView(ModelViewSet):
                         user_template = user[0].user_template.all().last().template_type
 
                     except:
-                        user_template = "1"
+                        user_template = "0"
 
                     data = serialized_data.data
                     data.pop('password')
@@ -56,6 +56,7 @@ class UserAuthView(ModelViewSet):
 
             if serialized_data.is_valid():
                 user = serialized_data.save()
+                serialized_data.data["template_type"] = "1"
                 return Response(create_response(False, Message.account_created.value, serialized_data.data))
             return Response(create_response(True, Message.try_with_correct_data.value, data=[]))
 
@@ -90,7 +91,7 @@ class ProfileView(ModelViewSet):
 
     def get_profile(self, request):
         try:
-            serialized_data = self.serializer_class(request.user, many=False).data
+            serialized_data = self.serializer_class(request.user, many=False , context={"request": request}).data
             try:
                 serialized_data['template_type'] = request.user.user_template.all().last().template_type
             except :
@@ -102,7 +103,7 @@ class ProfileView(ModelViewSet):
 
     def update_profile(self, request):
         try:
-            serializer = self.serializer_class(request.user, data = request.data)
+            serializer = self.serializer_class(request.user, data = request.data, context={"request": request})
             if serializer.is_valid():
                 serializer.save()
                 return Response(create_response(False, Message.success.value, serializer.data))

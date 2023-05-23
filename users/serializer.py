@@ -43,6 +43,24 @@ class UserProfileSerializer (ModelSerializer):
             'password' : {'write_only':True}
         }
 
+    def to_representation(self, instance):
+        data = {
+            "id" : instance.id,
+             "email" : instance.email,
+             "image" : self.context["request"].build_absolute_uri(instance.image.url),
+             "first_name" : instance.first_name,
+             "last_name" : instance.last_name,
+             "institute" : instance.institute,
+             "phone" : instance.phone,
+             "designation" : instance.designation,
+             "biography" : instance.biography,
+             "lab_details" : instance.lab_details,
+             "postal_address" : instance.postal_address,
+             "bg_color" : instance.bg_color
+        }
+        return data
+
+
 
 class EducationSerializer (ModelSerializer):
     class Meta :

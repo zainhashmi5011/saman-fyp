@@ -47,7 +47,6 @@ class UserProfileSerializer (ModelSerializer):
         data = {
             "id" : instance.id,
              "email" : instance.email,
-             "image" : self.context["request"].build_absolute_uri(instance.image.url),
              "first_name" : instance.first_name,
              "last_name" : instance.last_name,
              "institute" : instance.institute,
@@ -58,6 +57,10 @@ class UserProfileSerializer (ModelSerializer):
              "postal_address" : instance.postal_address,
              "bg_color" : instance.bg_color
         }
+        try:
+            data["image"] = self.context["request"].build_absolute_uri(instance.image.url)
+        except Exception as e:
+            print(e)
         return data
 
 
